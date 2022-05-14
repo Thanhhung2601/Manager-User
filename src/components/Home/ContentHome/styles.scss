@@ -1,0 +1,108 @@
+.contentHome {
+    background-color: #f2f2f2;
+    height: 100vh;
+    margin-left: 264px;
+    width: 100%;
+    padding: 12px 30px;
+    .header-ct-page {
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
+        line-height: 40px;
+        .ct-left {
+            cursor: pointer;
+        }
+        .ct-right {
+            display: flex;
+            .ct-right-icon {
+                position: relative;
+                padding-right: 12px;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 1px;
+                    height: 26px;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: #d9d9d9;
+                }
+                ul {
+                    li {
+                        display: inline-block;
+                        padding: 0 12px;
+                        transition: 0.3s linear;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        &:hover {
+                            background-color: #e6e6e6;
+                        }
+                    }
+                }
+            }
+            .ct-right-profile {
+                position: relative;
+                padding-left: 12px;
+                & > p {
+                    cursor: pointer;
+                    svg {
+                        margin-left: 10px;
+                    }
+                }
+                .user-profile {
+                    visibility: hidden;
+                    position: absolute;
+                    z-index: 10;
+                    width: 320px;
+                    background-color: white;
+                    border-radius: 4px;
+                    padding: 30px 28px;
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    left: -250px;
+                    transition: 0.3s ease;
+                    opacity: 0;
+                    &.active {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                    & > h2 {
+                        font-size: 1.8rem;
+                        font-weight: 600;
+                        opacity: 0.8;
+                    }
+                    .user-profile-description {
+                        display: flex;
+                        column-gap: 12px;
+                        padding-top: 12px;
+                        padding-bottom: 16px;
+                        align-items: center;
+                        border-bottom: 1px solid #e6e6e6;
+                        .user-profile-img {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 50%;
+                            width: 64px;
+                            height: 64px;
+                            background-color: black;
+                            color: white;
+                            font-size: 3.5rem;
+                        }
+                    }
+                    .btn-logout {
+                        text-align: center;
+                        margin-top: 20px;
+                        cursor: pointer;
+                        background-color: rgb(3, 201, 215);
+                        color: white;
+                        border-radius: 4px;
+                        transition: 0.3s ease;
+                        &:hover {
+                            background-color: #05b2bd;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

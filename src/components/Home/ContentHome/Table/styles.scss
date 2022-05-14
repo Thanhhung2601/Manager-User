@@ -1,0 +1,64 @@
+.table {
+    margin-top: 30px;
+    .btn-add {
+        margin-right: 16px;
+        margin-bottom: 16px;
+        text-align: right;
+        span {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #03c9d7;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+        }
+    }
+    table {
+        background-color: white;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    .btn-action {
+        text-align: center;
+        width: 200px;
+        .btn-update,
+        .btn-delete {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-update {
+            background-color: #ffff1a;
+            margin-right: 10px;
+        }
+        .btn-delete {
+            background-color: #ff3333;
+        }
+    }
+    .pagination {
+        padding: 22px 0;
+        text-align: center;
+        span {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            margin: 0 4px;
+            opacity: 0.6;
+            cursor: pointer;
+            &.active {
+                opacity: 1;
+                background-color: #e6e6e6;
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.elementItem {
+    margin-bottom: 22px;
+    cursor: pointer;
+    &.Icon {
+        display: flex;
+        column-gap: 18px;
+        padding: 0 16px;
+        height: 46px;
+        line-height: 46px;
+        &.active {
+            background-color: rgb(3, 201, 215);
+            color: white;
+            border-radius: 8px;
+        }
+    }
+    .elementItem-text {
+        font-size: 1.4rem;
+        opacity: 0.5;
+        &.Icon {
+            font-size: 1.6rem;
+            opacity: 1;
+        }
+    }
+}

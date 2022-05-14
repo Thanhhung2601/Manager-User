@@ -1,0 +1,87 @@
+.login-outer {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f9;
+    .login-inner {
+        display: flex;
+        width: 800px;
+        padding: 62px 0 62px 62px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        .login-content-left {
+            width: 272px;
+            padding-top: 22px;
+            .form-group {
+                padding-bottom: 20px;
+                span {
+                    color: #aca6cd;
+                    letter-spacing: 0.8px;
+                    display: inline-block;
+                    padding-bottom: 12px;
+                    font-size: 1.8rem;
+                }
+                .form-input {
+                    position: relative;
+                    input {
+                        width: 100%;
+                        padding: 14px 16px;
+                        outline: none;
+                        border-radius: 8px;
+                        border: 1px solid #f5f6fa;
+                        background-color: #f6f7fa;
+                        color: #c4c9db;
+                        font-size: 1.5rem;
+                        &::placeholder {
+                            color: #c4c9db;
+                        }
+                    }
+                    .form-input-icon {
+                        position: absolute;
+                        right: 14px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        cursor: pointer;
+                    }
+                }
+            }
+            .button {
+                display: flex;
+                justify-content: space-between;
+                padding-top: 12px;
+                .btn-signIn {
+                    border: none;
+                    height: 42px;
+                    line-height: 42px;
+                    padding: 0 46px;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    white-space: nowrap;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+                    color: white;
+                    background-color: rgb(3, 201, 215);
+                    border-radius: 8px;
+                    &.btn-disable {
+                        background-color: #e6e6e6;
+                    }
+                }
+                span {
+                    line-height: 42px;
+                    font-weight: 500;
+                    cursor: pointer;
+                }
+            }
+        }
+        .login-content-right {
+            flex-basis: calc(100% - 272px);
+            text-align: center;
+            img {
+                width: 380px;
+                object-fit: cover;
+            }
+        }
+    }
+}
