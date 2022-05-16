@@ -17,3 +17,12 @@ body {
     font-family: sans-serif;
     font-size: 1.6rem;
 }
+
+@keyframes opa {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

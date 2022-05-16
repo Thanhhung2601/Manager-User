@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -8,12 +8,10 @@ import ContentHome from '../../components/Home/ContentHome'
 import './styles.scss'
 
 const HomePage = () => {
+    const [showNavbar, setShowNavbar] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const user = useSelector((state) => state.user.user)
-
-    console.log(user)
-    console.log('homePage render')
 
     useEffect(() => {
         const userProfile = JSON.parse(localStorage.getItem('userProfile'))
@@ -21,9 +19,7 @@ const HomePage = () => {
     }, [])
 
     useEffect(() => {
-        console.log('again rerender')
         const userProfile = JSON.parse(localStorage.getItem('userProfile'))
-        console.log(userProfile)
         if (!userProfile) {
             navigate('/login')
         }
@@ -31,8 +27,8 @@ const HomePage = () => {
 
     return (
         <div className="homePage">
-            <Navbar />
-            <ContentHome />
+            <Navbar showNavbar={showNavbar} />
+            <ContentHome setShowNavbar={setShowNavbar} />
         </div>
     )
 }

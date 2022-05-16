@@ -4,24 +4,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import { faBell } from '@fortawesome/free-regular-svg-icons'
-import { faChevronDown, faUser } from '@fortawesome/free-solid-svg-icons'
+import {
+    faChevronDown,
+    faUser,
+    faBars,
+} from '@fortawesome/free-solid-svg-icons'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { actions } from '../../../Redux/slices/userSlice'
+import { actions as actionsTable } from '../../../Redux/slices/userTableSlice'
 import Table from './Table/Table'
-import { OverlayContext } from '../../OverlayContext'
+import Overlay from '../../Overlay'
 
-const ContentHome = () => {
+const ContentHome = ({ setShowNavbar }) => {
     const [showUserProfile, setShowUserProfile] = useState(false)
+    const [valueSearch, setSearchValue] = useState('')
+    const [displayOverlay, setDisplayOverlay] = useState(false)
     const userProfile = useSelector((state) => state.user.user)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { displayOverlay, setDisplayOverlay } = useContext(OverlayContext)
 
     const handleClick = () => {
-        setShowUserProfile(!showUserProfile)
-        setDisplayOverlay(!displayOverlay)
+        setShowUserProfile(true)
+        setDisplayOverlay(true)
     }
 
     const handleLogout = () => {
@@ -29,11 +35,30 @@ const ContentHome = () => {
         localStorage.setItem('userProfile', JSON.stringify(null))
         navigate('/')
     }
-    console.log(userProfile)
+
+    const handleInput = (e) => {
+        setSearchValue(e.target.value)
+        dispatch(actionsTable.searchUserById(e.target.value))
+    }
+
+    const handleClickBars = () => {
+        setShowNavbar(true)
+        setDisplayOverlay(true)
+    }
+
     return (
         <div className="contentHome">
             <div className="header-ct-page">
+                <div className="icon-bars" onClick={handleClickBars}>
+                    <FontAwesomeIcon icon={faBars} />
+                </div>
                 <div className="ct-left">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        value={valueSearch}
+                        onChange={handleInput}
+                    />
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </div>
                 <div className="ct-right">
@@ -77,6 +102,13 @@ const ContentHome = () => {
                 </div>
             </div>
             <Table />
+            {displayOverlay && (
+                <Overlay
+                    setDisplayOverlay={setDisplayOverlay}
+                    setShowUserProfile={setShowUserProfile}
+                    setShowNavbar={setShowNavbar}
+                />
+            )}
         </div>
     )
 }

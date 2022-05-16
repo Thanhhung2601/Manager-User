@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { createNewUser, getUser } from '../../api'
+import { getUser } from '../../api'
 import { toast } from 'react-toastify'
 
 const initialState = {
@@ -25,10 +25,6 @@ const userSlice = createSlice({
             )
             state.user = action.payload.userLogin
             action.payload.navigate('/')
-            console.log('done reducer redux')
-        })
-        builder.addCase(AcCreateNewUser.fulfilled, (state, action) => {
-            console.log(action.payload)
         })
     },
 })
@@ -40,18 +36,6 @@ export const fetchUser = createAsyncThunk(
             const { data } = await getUser(userData.valueInput)
             const userLogin = { ...userData.valueInput, token: data.token }
             return { userLogin, navigate: userData.navigate }
-        } catch (error) {
-            toast.error(error.response.data.error)
-        }
-    }
-)
-
-export const AcCreateNewUser = createAsyncThunk(
-    'userSlice/AcCreateNewUser',
-    async (userInfo) => {
-        try {
-            const { data } = await createNewUser(userInfo)
-            return data
         } catch (error) {
             toast.error(error.response.data.error)
         }

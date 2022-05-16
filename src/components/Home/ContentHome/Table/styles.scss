@@ -1,16 +1,37 @@
 .table {
     margin-top: 30px;
-    .btn-add {
-        margin-right: 16px;
-        margin-bottom: 16px;
-        text-align: right;
-        span {
-            display: inline-block;
-            padding: 8px 12px;
-            background-color: #03c9d7;
+    .btn-handle-ct {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: end;
+        .btn-handle {
+            margin-right: 16px;
+            margin-bottom: 16px;
+            text-align: right;
             border-radius: 4px;
-            cursor: pointer;
-            color: white;
+            span {
+                display: inline-block;
+                padding: 8px 12px;
+                cursor: pointer;
+                color: white;
+                white-space: nowrap;
+            }
+            &.add {
+                background-color: #03c9d7;
+            }
+            &.export-csv {
+                background-color: #4dff4d;
+                span {
+                    color: #404040;
+                }
+            }
+            &.import-csv {
+                background-color: #404040;
+                label {
+                    cursor: pointer;
+                    padding-left: 8px;
+                }
+            }
         }
     }
     table {
@@ -24,9 +45,21 @@
         text-align: left;
         padding: 8px;
     }
-    .btn-action {
-        text-align: center;
+    .action-cl {
         width: 200px;
+    }
+    .btn-action {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        @media screen and (max-width: 620px) {
+            .btn-update {
+                margin-right: 0 !important;
+            }
+            .btn-delete {
+                margin-top: 8px;
+            }
+        }
         .btn-update,
         .btn-delete {
             display: inline-block;

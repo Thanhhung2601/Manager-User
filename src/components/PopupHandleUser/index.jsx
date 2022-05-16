@@ -1,24 +1,61 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
-import { OverlayContext } from '../OverlayContext'
 import './styles.scss'
-import { AcCreateNewUser } from '../../Redux/slices/userSlice'
+import {
+    AcCreateNewUser,
+    AcUpdateUser,
+} from '../../Redux/slices/userTableSlice'
 import { useDispatch } from 'react-redux'
 
-const PopupHandleUser = ({ display, setShowPopup }) => {
+const PopupHandleUser = ({
+    display,
+    setShowPopup,
+    handle,
+    setDisplayOverlay,
+}) => {
     const [userInfor, setUserInfor] = useState({ name: '', job: '' })
-    const { displayOverlay, setDisplayOverlay } = useContext(OverlayContext)
     const dispatch = useDispatch()
-
     const handleClick = () => {
         setShowPopup(false)
         setDisplayOverlay(false)
     }
-    const handleAddNew = () => {
-        dispatch(AcCreateNewUser(userInfor))
+    const btnHandle = () => {
+        if (handle.task === 'Craete New User') {
+            dispatch(AcCreateNewUser(userInfor))
+            setUserInfor({ name: '', job: '' })
+            setShowPopup(false)
+            setDisplayOverlay(false)
+        }
+        if (handle.task === 'Update User') {
+            dispatch(
+                AcUpdateUser({
+                    ...handle.data,
+                    name: userInfor.name,
+                    job: userInfor.job,
+                })
+            )
+            setShowPopup(false)
+            setDisplayOverlay(false)
+        }
     }
-    console.log(userInfor)
+
+    useEffect(() => {
+        if (handle.task === 'Update User') {
+            if (handle.data.name) {
+                setUserInfor(handle.data)
+            } else {
+                setUserInfor({
+                    ...handle.data,
+                    name: handle.data.first_name,
+                    job: '',
+                })
+            }
+        }
+        if (handle.task === 'Craete New User') {
+            setUserInfor({ name: '', job: '' })
+        }
+    }, [display])
 
     return (
         <div className={display ? 'PopupHandleUser show' : 'PopupHandleUser '}>
@@ -49,8 +86,8 @@ const PopupHandleUser = ({ display, setShowPopup }) => {
                         }
                     />
                 </div>
-                <div className="btn-createNewUser" onClick={handleAddNew}>
-                    Create New User
+                <div className="btn-createNewUser" onClick={btnHandle}>
+                    {handle.task}
                 </div>
             </form>
             <div className="btn-close" onClick={handleClick}>

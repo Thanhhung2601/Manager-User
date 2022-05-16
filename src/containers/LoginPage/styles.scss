@@ -1,4 +1,14 @@
 .login-outer {
+    @media screen and (max-width: 820px) {
+        .login-content-right {
+            display: none;
+        }
+        .login-inner {
+            justify-content: center;
+            padding: 12px 30px !important;
+            width: 300px !important;
+        }
+    }
     display: flex;
     height: 100vh;
     align-items: center;

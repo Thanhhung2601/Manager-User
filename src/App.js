@@ -4,7 +4,6 @@ import HomePage from './containers/HomePage/HomePage'
 import LoginPage from './containers/LoginPage/LoginPage'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Overlay from './components/OverlayContext/Overlay'
 
 function App() {
     return (
@@ -27,7 +26,6 @@ function App() {
                 pauseOnHover
             />
             <ToastContainer />
-            <Overlay />
         </div>
     )
 }

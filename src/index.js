@@ -5,16 +5,13 @@ import reportWebVitals from './reportWebVitals'
 import GlobalStyles from './components/GlobalStyles/GlobalStyles'
 import store from './Redux/store'
 import { Provider } from 'react-redux'
-import { OverlayProvider } from './components/OverlayContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
         <Provider store={store}>
             <GlobalStyles>
-                <OverlayProvider>
-                    <App />
-                </OverlayProvider>
+                <App />
             </GlobalStyles>
         </Provider>
     </React.StrictMode>
